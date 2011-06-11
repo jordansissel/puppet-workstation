@@ -9,7 +9,7 @@ class workstation {
     "gcc": ensure => latest;
     "gcc-c++": ensure => latest;
     "ctags": ensure => latest;
-    [ "ruby", "ruby-devel" ]: ensure => latest;
+    [ "ruby", "ruby-devel", "ruby-ri" ]: ensure => latest;
 
     "openssl-devel": ensure => latest;
     "glib-devel": ensure => latest;
