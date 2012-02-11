@@ -11,6 +11,9 @@ class workstation {
     "git": ensure => latest;
     "gcc": ensure => latest;
     "gcc-c++": ensure => latest;
+    "libtool-ltdl": ensure => latest;
+    "libtool": ensure => latest;
+    "libtool-ltdl-devel": ensure => latest;
     "ctags": ensure => latest;
     "cscope": ensure => latest;
     [ "ruby", "ruby-devel", "ruby-ri" ]: ensure => latest;
