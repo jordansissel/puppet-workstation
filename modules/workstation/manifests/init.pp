@@ -1,7 +1,8 @@
 class workstation {
   include workstation::xdotool
   include workstation::grok
-  include workstation::skype
+  # skype sucks on linux anyways, don't install prereqs.
+  #include workstation::skype
 
   package {
     [ "zsh", "screen", "tmux", "vim-enhanced" ]: ensure => latest;
