@@ -15,8 +15,7 @@ class workstation {
     "libtool-ltdl": ensure => latest;
     "libtool": ensure => latest;
     "libtool-ltdl-devel": ensure => latest;
-    "ctags": ensure => latest;
-    "cscope": ensure => latest;
+    "ctags": ensure => latest; "cscope": ensure => latest;
     [ "ruby", "ruby-devel", "ruby-ri" ]: ensure => latest;
     [ "lua", "lua-devel" ]: ensure => latest;
 
@@ -34,6 +33,9 @@ class workstation {
     "pwgen": ensure => latest;
     "automake": ensure => latest;
     "nmap": ensure => latest;
+
+    "libxml2-devel": ensure => latest;
+    "libxslt-devel": ensure => latest;
 
   }
 }
