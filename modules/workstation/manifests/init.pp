@@ -18,7 +18,7 @@ class workstation {
     "nmap": ensure => latest;
   }
 
-  case $os["distro"]["id"] {
+  case $operatingsystem {
     'Fedora', 'RedHat', 'CentOS': {
       package {
         "gcc-c++": ensure => latest;
@@ -29,6 +29,7 @@ class workstation {
         "readline-devel": ensure => latest;
         "openssl-devel": ensure => latest;
         "vim-enhanced": ensure => latest;
+        "java-1.8.0-openjdk-devel": ensure => latest;
       }
     }
     'Debian', 'Ubuntu': {
