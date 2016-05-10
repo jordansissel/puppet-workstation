@@ -1,4 +1,6 @@
 class workstation {
+  include workstation::systemd
+
   package {
     [ "zsh", "screen", "tmux"]: ensure => latest;
     "wget": ensure => latest;
