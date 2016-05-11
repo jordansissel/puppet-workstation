@@ -1,11 +1,11 @@
-class workstation::sudo {
+class workstation::sudo($sudoers="/etc/sudoers") {
 
   package {
     "sudo": ensure => latest;
   }
 
   file {
-    "/etc/sudoers":
+    $sudoers:
       require => Package["sudo"],
       ensure => present,
       source => "puppet:///modules/workstation/sudoers"

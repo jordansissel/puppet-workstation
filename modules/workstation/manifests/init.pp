@@ -1,6 +1,4 @@
 class workstation {
-  include workstation::systemd
-
   package {
     [ "zsh", "screen", "tmux"]: ensure => latest;
     "wget": ensure => latest;
@@ -12,12 +10,20 @@ class workstation {
     "libtool": ensure => latest;
     "ctags": ensure => latest;
     "cscope": ensure => latest;
-    "strace": ensure => latest;
     "tcpdump": ensure => latest;
     "valgrind": ensure => latest;
     "pwgen": ensure => latest;
     "automake": ensure => latest;
     "nmap": ensure => latest;
+  }
+
+  case $operatingsystem {
+    'Fedora', 'RedHat', 'CentOS', 'Debian', 'Ubuntu': {
+      include workstation::systemd
+      package {
+        "strace": ensure => latest;
+      }
+    }
   }
 
   case $operatingsystem {
@@ -43,6 +49,9 @@ class workstation {
         "libssl-dev": ensure => latest;
         "openjdk-8-jdk": ensure => latest;
       }
+    }
+    'FreeBSD': {
+      # Anything?
     }
   }
 }

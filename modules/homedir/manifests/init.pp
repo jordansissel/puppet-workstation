@@ -1,6 +1,15 @@
 class homedir {
   include workstation
-  include workstation::sudo
+  #include workstation::sudo
+
+  case $operatingsystem {
+    'FreeBSD': {
+      class { "workstation::sudo": sudoers => "/usr/local/etc/sudoers" }
+    }
+    default: {
+      class { "workstation::sudo": sudoers => "/etc/sudoers" }
+    }
+  }
 
   file {
     "/home/jls":
@@ -11,10 +20,14 @@ class homedir {
       group => "jls";
   }
 
+  Exec {
+    path => [ "/bin", "/sbin", "/usr/bin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin" ]
+  }
+
   exec {
     "update jls homedir":
-      require => [Package["curl"], Package["sudo"], File["/etc/sudoers"], File["/home/jls"]],
+      require => [Package["curl"], Class["workstation::sudo"], File["/home/jls"]],
       refreshonly => true,
-      command => "/usr/bin/curl -Lso - https://github.com/jordansissel/dotfiles/tarball/master | sudo -u jls tar -C /home/jls --strip-components=1 -zxf -"
+      command => "curl -Lso - https://github.com/jordansissel/dotfiles/tarball/master | sudo -u jls tar -C /home/jls --strip-components=1 -zxf -"
   }
 }

@@ -5,11 +5,20 @@ class user::humans {
     "wheel": ensure => present;
   }
 
+  case $operatingsystem {
+    'FreeBSD': {
+      $shell = "/usr/local/bin/zsh"
+    }
+    default: {
+      $shell = "/bin/zsh"
+    }
+  }
+
   user {
     "jls":
       require => Group["wheel"],
       ensure => present,
       groups => ["wheel"],
-      shell => "/bin/zsh";
+      shell => $shell;
   }
 }
