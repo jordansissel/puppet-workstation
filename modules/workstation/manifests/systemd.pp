@@ -1,7 +1,7 @@
 class workstation::systemd {
   file {
     "/var/log/journal":
-      notify => "/usr/bin/systemctl restart systemd-journald",
+      notify => Exec["/usr/bin/systemctl restart systemd-journald"\,
       ensure => directory;
 
   }
