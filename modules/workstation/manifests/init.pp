@@ -59,7 +59,11 @@ class workstation {
       }
     }
     'FreeBSD': {
-      # Anything?
+      package {
+        # For rvm
+        "gnupg1": ensure => latest;
+        "bash": ensure => latest;
+      }
     }
   }
 }
