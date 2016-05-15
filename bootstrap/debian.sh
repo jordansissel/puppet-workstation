@@ -4,7 +4,7 @@ mkdir ~/.ssh
 
 # Remove any cdrom entries from the apt sources.
 grep -v 'cdrom' /etc/apt/sources.list > /tmp/x
-mv /tmp/x /etc/apt/sources.list
+cat /tmp/x > /etc/apt/sources.list
 
 distrib=$(lsb_release -is)
 release=$(lsb_release -cs)
