@@ -19,9 +19,17 @@ class workstation {
 
   case $operatingsystem {
     'Fedora', 'RedHat', 'CentOS', 'Debian', 'Ubuntu': {
-      include workstation::systemd
       package {
         "strace": ensure => latest;
+      }
+
+
+      if ($operatingsystem == "CentOS" and $operatingsystemrelease =~ /^7\b/)
+          or ($operatingsystem == "RedHat" and $operatingsystemrelease =~ /^7\b/)
+          or ($operatingsystem == "Fedora" and $operatingsystemrelease =~ /^19\b/)
+          or ($operatingsystem == "Debian" and $operatingsystemrelease =~ /^8\b/)
+          or ($operatingsystem == "Ubuntu" and $operatingsystemrelease =~ /^16\b/) {
+        include workstation::systemd
       }
     }
   }
