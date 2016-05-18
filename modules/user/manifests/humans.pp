@@ -16,7 +16,7 @@ class user::humans {
 
   user {
     "jls":
-      require => Group["wheel"],
+      require => [Group["wheel"], Package["zsh"]],
       ensure => present,
       groups => ["wheel"],
       shell => $shell;
