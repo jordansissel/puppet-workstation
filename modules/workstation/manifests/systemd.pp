@@ -1,13 +1,14 @@
 class workstation::systemd {
   file {
     "/var/log/journal":
-      notify => Exec["/usr/bin/systemctl restart systemd-journald"],
+      notify => Exec["systemctl restart systemd-journald"],
       ensure => directory;
 
   }
 
   exec {
-    "/usr/bin/systemctl restart systemd-journald":
+    "systemctl restart systemd-journald":
+      path => [ "/bin", "/sbin", "/usr/bin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin" ],
       refreshonly => true;
   }
 }
